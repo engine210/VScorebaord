@@ -1,10 +1,11 @@
 package com.example.engine210.vscorebaord;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         TxtMatchLeft = findViewById(R.id.textView_match_left);
         TxtMatchRight = findViewById(R.id.textView_match_right);
 
-        BtnPlusLeftClik();
+        //BtnPlusLeftClik();
         BtnMinusLeftClik();
         BtnPlusRightClik();
         BtnMinusRightClik();
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         BtnSwitchCLick();
 
     }
-
+    /// FIXME JAVA NullPointerException
     private void BtnPlusLeftClik() {
         BtnPlusLeft.setOnClickListener(new View.OnClickListener() {
             @Override
