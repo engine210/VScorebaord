@@ -2,4 +2,7 @@
     <string name="app_name">VScorebaord</string>
     <string name="undo">Undo</string>
     <string name="reset">Reset</string>
+    <string name="left_team_score">Left Team Score</string>
+    <string name="right_team_score">Right team score</string>
+    <string name="Null">null</string>
 </resources>

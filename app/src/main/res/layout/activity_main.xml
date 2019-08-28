@@ -7,118 +7,14 @@
     android:background="#262626"
     tools:context=".MainActivity">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_plus_left"
-        android:layout_width="72dp"
-        android:layout_height="120dp"
-        app:cornerRadius="15dp"
-        app:icon="@drawable/ic_plus_white_32dp"
-        app:iconSize="64dp"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@android:color/transparent"
-        app:iconTintMode="add"
-        app:layout_constraintBottom_toBottomOf="@+id/Center_Board"
-        app:layout_constraintEnd_toStartOf="@+id/Center_Board"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Center_Board"
-        app:layout_constraintVertical_bias="0.120000005" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_minus_left"
-        android:layout_width="72dp"
-        android:layout_height="120dp"
-        app:cornerRadius="15dp"
-        app:icon="@drawable/ic_minus_white_32dp"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconSize="64dp"
-        app:iconTint="@android:color/transparent"
-        app:iconTintMode="add"
-        app:layout_constraintBottom_toBottomOf="@+id/Center_Board"
-        app:layout_constraintEnd_toStartOf="@+id/Center_Board"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_plus_left" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_plus_right"
-        android:layout_width="72dp"
-        android:layout_height="120dp"
-        app:cornerRadius="15dp"
-        app:icon="@drawable/ic_plus_white_32dp"
-        app:iconSize="64dp"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@android:color/transparent"
-        app:iconTintMode="add"
-        app:layout_constraintBottom_toBottomOf="@+id/Center_Board"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Center_Board"
-        app:layout_constraintTop_toTopOf="@+id/Center_Board"
-        app:layout_constraintVertical_bias="0.120000005" />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_minus_right"
-        android:layout_width="72dp"
-        android:layout_height="120dp"
-        app:cornerRadius="15dp"
-        app:icon="@drawable/ic_minus_white_32dp"
-        app:iconSize="64dp"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="@android:color/transparent"
-        app:iconTintMode="add"
-        app:layout_constraintBottom_toBottomOf="@+id/Center_Board"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Center_Board"
-        app:layout_constraintTop_toBottomOf="@+id/button_plus_right" />
-
-
     <include
-        android:id="@+id/Center_Board"
-        layout="@layout/center_board"
+        android:id="@+id/board_buttons"
+        layout="@layout/board_buttons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="72dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_reset"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:cornerRadius="15dp"
-        android:text="@string/reset"
-        style="@style/Controller_Text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_undo"
-        app:layout_constraintStart_toStartOf="@+id/Center_Board"
-        app:layout_constraintTop_toBottomOf="@+id/Center_Board" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_undo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:cornerRadius="15dp"
-        android:text="@string/undo"
-        style="@style/Controller_Text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Center_Board"
-        app:layout_constraintHorizontal_bias="0.915"
-        app:layout_constraintStart_toEndOf="@+id/button_reset"
-        app:layout_constraintTop_toBottomOf="@+id/Center_Board"
-        app:layout_constraintVertical_bias="0.529" />
-
-
+        app:layout_constraintTop_toTopOf="parent">
+    </include>
 </androidx.constraintlayout.widget.ConstraintLayout>
