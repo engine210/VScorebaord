@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
+
+    <ImageView
+        android:id="@+id/imageView_board_background"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/functional_button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/score_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_board_background"
+        app:layout_constraintEnd_toStartOf="@id/button_switch"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView_board_background"
+        app:layout_constraintTop_toTopOf="@+id/imageView_board_background"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/score_red"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_board_background"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_board_background"
+        app:layout_constraintStart_toEndOf="@+id/button_switch"
+        app:layout_constraintTop_toTopOf="@+id/imageView_board_background" />
+
+    <TextView
+        android:id="@+id/textView_score_left"
+        style="@style/Score_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_left"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_left"
+        app:layout_constraintStart_toStartOf="@+id/imageView_left"
+        app:layout_constraintTop_toTopOf="@+id/imageView_left"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/textView_score_right"
+        style="@style/Score_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_right"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_right"
+        app:layout_constraintStart_toStartOf="@+id/imageView_right"
+        app:layout_constraintTop_toTopOf="@+id/imageView_right"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/textView_match_left"
+        style="@style/Match_Text"
+        android:layout_width="80dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:background="@drawable/match_background"
+        app:layout_constraintBottom_toTopOf="@+id/textView_score_left"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_left"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="@+id/imageView_left"
+        app:layout_constraintTop_toTopOf="@+id/imageView_left" />
+
+    <TextView
+        android:id="@+id/textView_match_right"
+        style="@style/Match_Text"
+        android:layout_width="80dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:background="@drawable/match_background"
+        app:layout_constraintBottom_toTopOf="@+id/textView_score_right"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_right"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/imageView_right"
+        app:layout_constraintTop_toTopOf="@+id/imageView_right" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_switch"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:icon="@drawable/ic_switch_white_32dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@android:color/transparent"
+        app:iconTintMode="add"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_board_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView_board_background" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
