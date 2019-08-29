@@ -8,9 +8,9 @@ import kotlinx.android.synthetic.main.center_board.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnLongClickListener {
 
-    private var volley_ball_board = ScoreBoard(0, 0, 0, 0)
+    private var volleyBallBoard = ScoreBoard()
 
-    fun setScore(scores: Scores) {
+    private fun setScore(scores: Scores) {
         imageView_left.setBackgroundResource(scores.left_background)
         imageView_right.setBackgroundResource(scores.right_background)
         textView_score_left.text = scores.left_score.toString()
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnLongClick
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setScore(volley_ball_board.record)
+        setScore(volleyBallBoard.record)
 
         button_minus_left.setOnClickListener(this)
         button_minus_right.setOnClickListener(this)
@@ -41,27 +41,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnLongClick
         button_plus_right.setOnLongClickListener(this)
     }
 
-    /// TODO　implement undo btn
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.button_plus_left -> volley_ball_board.left_team_plus()
-            R.id.button_minus_left -> volley_ball_board.left_team_minus()
-            R.id.button_plus_right -> volley_ball_board.right_team_plus()
-            R.id.button_minus_right -> volley_ball_board.right_team_minus()
-            R.id.button_reset -> volley_ball_board.reset()
-            R.id.button_switch -> volley_ball_board.switch()
+            R.id.button_plus_left -> volleyBallBoard.leftTeamPlus()
+            R.id.button_minus_left -> volleyBallBoard.leftTeamMinus()
+            R.id.button_plus_right -> volleyBallBoard.rightTeamPlus()
+            R.id.button_minus_right -> volleyBallBoard.rightTeamMinus()
+            R.id.button_reset -> volleyBallBoard.reset()
+            R.id.button_undo -> volleyBallBoard.undo()
+            R.id.button_switch -> volleyBallBoard.switch()
         }
-        setScore(volley_ball_board.record)
+        setScore(volleyBallBoard.record)
     }
 
     override fun onLongClick(v: View): Boolean {
         when (v.id) {
-            R.id.button_plus_left -> volley_ball_board.left_team_match_plus()
-            R.id.button_minus_left -> volley_ball_board.left_team_match_minus()
-            R.id.button_plus_right -> volley_ball_board.right_team_match_plus()
-            R.id.button_minus_right -> volley_ball_board.right_team_match_minus()
+            R.id.button_plus_left -> volleyBallBoard.leftTeamMatchPlus()
+            R.id.button_minus_left -> volleyBallBoard.leftTeamMatchMinus()
+            R.id.button_plus_right -> volleyBallBoard.rightTeamMatchPlus()
+            R.id.button_minus_right -> volleyBallBoard.rightTeamMatchMinus()
         }
-        setScore(volley_ball_board.record)
+        setScore(volleyBallBoard.record)
         return true
     }
 }

@@ -1,15 +1,14 @@
 package com.example.engine210.vscorebaord
-class ScoreBoard (){
-    lateinit var record: Scores
-    constructor(
-            left_team_match: Int = 0,
-            left_team_score: Int = 0,
-            right_team_match: Int = 0,
-            right_team_score: Int = 0) : this() {
-        this.record = Scores(left_team_match, left_team_score, right_team_match, right_team_score)
-    }
 
-    fun left_team_plus(){
+import java.util.*
+
+/// FIXME(Unsure usage of stack. Pass by reference? value?)
+class ScoreBoard {
+    var record = Scores(0, 0, 0, 0)
+    private var history: Stack<Scores> = Stack()
+
+    fun leftTeamPlus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         if (record.left_score < 24) {
             record.left_score++
         } else {
@@ -17,7 +16,9 @@ class ScoreBoard (){
             record.left_match++
         }
     }
-    fun left_team_minus(){
+
+    fun leftTeamMinus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         if (record.left_score > 0) {
             record.left_score--
         } else if (record.left_score == 0 && record.left_match > 0) {
@@ -26,16 +27,20 @@ class ScoreBoard (){
         }
     }
 
-    fun left_team_match_plus(){
+    fun leftTeamMatchPlus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         record.left_match++
     }
-    fun left_team_match_minus(){
+
+    fun leftTeamMatchMinus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         if (record.left_match > 0) {
             record.left_match--
         }
     }
 
-    fun right_team_plus(){
+    fun rightTeamPlus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         if (record.right_score < 24) {
             record.right_score++
         } else {
@@ -43,7 +48,9 @@ class ScoreBoard (){
             record.right_match++
         }
     }
-    fun right_team_minus(){
+
+    fun rightTeamMinus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         if (record.right_score > 0) {
             record.right_score--
         } else if (record.right_score == 0 && record.right_match > 0) {
@@ -52,26 +59,37 @@ class ScoreBoard (){
         }
     }
 
-    fun right_team_match_plus(){
+    fun rightTeamMatchPlus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         record.right_match++
     }
-    fun right_team_match_minus(){
+
+    fun rightTeamMatchMinus() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         if (record.right_match > 0) {
             record.right_match--
         }
     }
 
-    fun reset(){
+    fun switch() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
+        record.left_score = record.right_score.also { record.right_score = record.left_score }
+        record.left_match = record.right_match.also { record.right_match = record.left_match }
+        record.left_background = record.right_background.also { record.right_background = record.left_background }
+    }
+
+    fun reset() {
+        history.push(Scores(record.left_match, record.left_score, record.right_match, record.right_score, record.left_background, record.right_background))
         record.left_score = 0
         record.right_score = 0
         record.left_match = 0
         record.right_match = 0
     }
-    
-    fun switch(){
-        record.left_score = record.right_score.also { record.right_score = record.left_score }
-        record.left_match = record.right_match.also { record.right_match = record.left_match }
-        record.left_background = record.right_background.also { record.right_background = record.left_background }
+
+    fun undo() {
+
+        if (!history.empty()) {
+            record = history.pop()
+        }
     }
-    
 }
