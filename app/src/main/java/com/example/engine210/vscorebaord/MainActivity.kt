@@ -1,24 +1,14 @@
 package com.example.engine210.vscorebaord
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.board_buttons.*
 import kotlinx.android.synthetic.main.center_board.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnLongClickListener {
 
-    private var scores = Scores()
-    private var prev_state = scores.copy()
-    fun Switch(scores: Scores) {
-        scores.left_score = scores.right_score.also { scores.right_score = scores.left_score }
-        scores.left_match = scores.right_match.also { scores.right_match = scores.left_match }
-        scores.left_background = scores.right_background.also { scores.right_background = scores.left_background }
-        return
-    }
+    private var volley_ball_board = ScoreBoard(0, 0, 0, 0)
 
     fun setScore(scores: Scores) {
         imageView_left.setBackgroundResource(scores.left_background)
@@ -35,7 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnLongClick
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setScore(scores)
+        setScore(volley_ball_board.record)
 
         button_minus_left.setOnClickListener(this)
         button_minus_right.setOnClickListener(this)
@@ -53,77 +43,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnLongClick
 
     /// TODO　implement undo btn
     override fun onClick(v: View) {
-        if(v.id != R.id.button_undo){
-            prev_state = scores.copy()
-        }
         when (v.id) {
-            R.id.button_minus_left -> {
-                if (scores.left_score > 0) {
-                    scores.left_score--
-                } else if (scores.left_score == 0 && scores.left_match > 0) {
-                    scores.left_match--
-                    scores.left_score = 24
-                }
-            }
-            R.id.button_minus_right -> {
-                if (scores.right_score > 0) {
-                    scores.right_score--
-                } else if (scores.right_score == 0 && scores.right_match > 0) {
-                    scores.right_match--
-                    scores.right_score = 24
-                }
-            }
-            R.id.button_plus_left -> {
-                if (scores.left_score < 24) {
-                    scores.left_score++
-                } else {
-                    scores.left_score = 0
-                    scores.left_match++
-                }
-            }
-            R.id.button_plus_right -> {
-                if (scores.right_score < 24) {
-                    scores.right_score++
-                } else {
-                    scores.right_score = 0
-                    scores.right_match++
-                }
-            }
-            R.id.button_reset -> {
-                scores.left_score = 0
-                scores.right_score = 0
-                scores.left_match = 0
-                scores.right_match = 0
-            }
-            R.id.button_undo ->
-                scores = prev_state.copy()
-            R.id.button_switch -> {
-                Switch(scores)
-            }
+            R.id.button_plus_left -> volley_ball_board.left_team_plus()
+            R.id.button_minus_left -> volley_ball_board.left_team_minus()
+            R.id.button_plus_right -> volley_ball_board.right_team_plus()
+            R.id.button_minus_right -> volley_ball_board.right_team_minus()
+            R.id.button_reset -> volley_ball_board.reset()
+            R.id.button_switch -> volley_ball_board.switch()
         }
-        setScore(scores)
+        setScore(volley_ball_board.record)
     }
 
     override fun onLongClick(v: View): Boolean {
         when (v.id) {
-            R.id.button_minus_left -> {
-                if (scores.left_match > 0) {
-                    scores.left_match--
-                }
-            }
-            R.id.button_minus_right -> {
-                if (scores.right_match > 0) {
-                    scores.right_match--
-                }
-            }
-            R.id.button_plus_left -> {
-                scores.left_match++
-            }
-            R.id.button_plus_right -> {
-                scores.right_match++
-            }
+            R.id.button_plus_left -> volley_ball_board.left_team_match_plus()
+            R.id.button_minus_left -> volley_ball_board.left_team_match_minus()
+            R.id.button_plus_right -> volley_ball_board.right_team_match_plus()
+            R.id.button_minus_right -> volley_ball_board.right_team_match_minus()
         }
-        setScore(scores)
+        setScore(volley_ball_board.record)
         return true
     }
 }
